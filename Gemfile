@@ -24,19 +24,22 @@ group :development do
   gem 'binding_of_caller'
   gem 'pry-rails'
   gem 'guard-rspec', require: false
+  gem 'web-console'
 end
 
 group :development, :test do
   gem 'faker'
-  gem 'rspec', '~> 3.2'
+  gem 'rspec', '~>3.2'
   gem 'fabrication', '~> 2.13'
+  gem 'mocha', require: false
   gem 'rspec-rails'
   gem 'shoulda', require: false
   gem 'rspec-given'
+  gem 'webmock', require: false
   gem 'spork'
   gem 'pry-nav'
   gem 'pry-byebug'
-  gem 'web-console'
+  gem 'byebug'
   gem 'spring'
 end
 
