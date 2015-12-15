@@ -11,6 +11,8 @@ class User < ActiveRecord::Base
 
   validates :handle, presence: true, length: { minimum: 1, maximum: 30 }, uniqueness: { case_sensitive: false }, format: { with: /\A[a-zA-Z0-9_-]*\z/ }
 
+  has_one :profile
+
 
   def strip_handle
     self.handle = handle.strip unless self.handle.nil?
@@ -23,6 +25,29 @@ class User < ActiveRecord::Base
   def strip_downcase_email
     self.email = self.email.strip
     self.email = self.email.downcase
+  end
+
+  def self.build(opts = {})
+    u = User.new(opts)
+    u.setup(opts)
+    u
+  end
+
+  def setup(opts)
+    self.handle = opts[:handle]
+    self.email = opts[:email]
+    self.valid?
+    errors = self.errors
+    errors.delete :profile
+    return if errors.size > 0
+    self.setup_profile(Profile.new((opts[:profile] || {})))
+    self
+  end
+
+  def setup_profile(profile)
+    profile.handle = "#{self.handle_lower}"
+    self.profile = profile
+    self.profile.save
   end
 
   private

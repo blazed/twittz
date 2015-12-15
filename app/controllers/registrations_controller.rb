@@ -1,6 +1,6 @@
 class RegistrationsController < Devise::RegistrationsController
   def create
-    user = User.new(sign_up_params)
+    user = User.build(sign_up_params)
     if user.save
       data = {
         success: true
