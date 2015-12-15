@@ -11,7 +11,9 @@ class User < ActiveRecord::Base
 
   validates :handle, presence: true, length: { minimum: 1, maximum: 30 }, uniqueness: { case_sensitive: false }, format: { with: /\A[a-zA-Z0-9_-]*\z/ }
 
-  has_one :profile
+  has_one :profile, dependent: :destroy
+  has_many :relationships, foreign_key: "follower_id", dependent: :destroy
+  has_many :followed_profiles, through: :relationships, source: :followed
 
 
   def strip_handle

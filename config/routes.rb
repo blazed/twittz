@@ -6,6 +6,8 @@ Rails.application.routes.draw do
 
     get 'profiles/:handle' => 'profiles#show'
     get 'profiles/:handle/posts/:id' => 'posts#show'
+
+    get 'feed' => 'feeds#index'
   end
 
 end
