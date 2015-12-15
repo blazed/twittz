@@ -45,7 +45,7 @@ class User < ActiveRecord::Base
   end
 
   def setup_profile(profile)
-    profile.handle = "#{self.handle_lower}"
+    profile.handle = "#{self.handle.downcase}"
     self.profile = profile
     self.profile.save
   end

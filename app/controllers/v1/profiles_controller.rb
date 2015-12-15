@@ -1,6 +1,6 @@
 module V1
   class ProfilesController < ApplicationController
-    before_action :authenticate_user!
+    before_action :authenticate_user!, except: [:show]
 
     def show
       profile = Profile.find_by(handle: params[:handle].downcase)

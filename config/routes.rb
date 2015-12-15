@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     get 'users/me' => 'users#me'
 
     get 'profiles/:handle' => 'profiles#show'
+    get 'profiles/:handle/posts/:id' => 'posts#show'
   end
 
 end

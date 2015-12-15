@@ -11,10 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151215164742) do
+ActiveRecord::Schema.define(version: 20151215180454) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "posts", force: :cascade do |t|
+    t.integer  "profile_id"
+    t.integer  "likes_count", default: 0
+    t.text     "body"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
 
   create_table "profiles", force: :cascade do |t|
     t.string   "name"
@@ -23,6 +31,7 @@ ActiveRecord::Schema.define(version: 20151215164742) do
     t.integer  "user_id",    null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "location"
   end
 
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", using: :btree
