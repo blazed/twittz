@@ -3,4 +3,5 @@ class Profile < ActiveRecord::Base
 
   has_many :posts, dependent: :destroy
   has_many :followers, class_name: 'Relationship', foreign_key: 'followed_id', dependent: :destroy
+  has_many :likes, dependent: :destroy
 end

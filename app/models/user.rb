@@ -52,6 +52,9 @@ class User < ActiveRecord::Base
     self.profile.save
   end
 
+  def feed
+  end
+
   private
 
   def ensure_authentication_token
