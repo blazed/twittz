@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   before_save :strip_downcase_email
   before_save :ensure_authentication_token
 
-  validates :handle, presence: true, length: { minimum: 1, maximum: 30 }, uniqueness: { case_sensitive: false }, format: { with: /\A[a-zA-Z0-9_-]*\z/ }
+  validates :handle, presence: true, length: { minimum: 3, maximum: 30 }, uniqueness: { case_sensitive: false }, format: { with: /\A[a-zA-Z0-9_-]*\z/ }
 
   has_one :profile, dependent: :destroy
   has_many :relationships, foreign_key: "follower_id", dependent: :destroy
