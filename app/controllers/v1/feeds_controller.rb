@@ -3,9 +3,8 @@ module V1
     before_action :authenticate_user!
 
     def index
-      #follower_ids = Relationship.find_by_sql("SELECT follower_id FROM relationships WHERE follower_id = #{current_user.id}")
-      feed = PublicActivity::Activity.all
-      render json: feed#, serializer: FeedSerializer
+      feed = Post.where("profile_id in (?) OR profile_id = ?", current_user.followed_profile_ids, current_user.profile.id)
+      render json: feed, each_serializer: FeedSerializer
     end
   end
 end

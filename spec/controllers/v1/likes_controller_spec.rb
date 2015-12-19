@@ -19,7 +19,6 @@ RSpec.describe V1::LikesController, type: :controller do
 
     it 'post' do
       xhr :post, :like_post, post_id: twitt.id
-      puts twitt.id
       expect(::JSON.parse(response.body)['post_id']).to eq(twitt.id)
     end
   end
