@@ -43,6 +43,10 @@ group :development, :test do
   gem 'spring'
 end
 
+group :test do
+  gem 'simplecov', require: false
+end
+
 
 
 # To use ActiveModel has_secure_password

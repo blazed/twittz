@@ -11,7 +11,7 @@ module V1
       post = current_user.profile.posts.new(post_params)
 
       if post.save
-        render json: post, status: 200
+        render json: post, status: 201
       else
         render json: { errors: post.errors.full_messages  }, status: 422
       end

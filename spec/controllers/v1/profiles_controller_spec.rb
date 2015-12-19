@@ -1,15 +1,15 @@
 require 'rails_helper'
 
-RSpec.describe V1::UsersController, type: :controller do
+RSpec.describe V1::ProfilesController, type: :controller do
   let(:user) { Fabricate(:user) }
 
   before do
     sign_in(user)
   end
 
-  describe "GET #me" do
+  describe "GET #show" do
     it "returns http success" do
-      get :me
+      get :show, handle: user.handle
       expect(response).to have_http_status(:success)
     end
   end
